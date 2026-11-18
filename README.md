@@ -6,6 +6,8 @@
 
 Darwin EvoDNA studies how a symbolic seed derived from text or digital speech features could initialize a heritable *computational genome* for evolutionary search, artificial life, communication, and constrained model design.
 
+**First reproducible pilot (2026-11-18):** The audited CVNSS4.0 seed did **not** outperform unseeded evolution on the synthetic benchmark (paired difference −0.005397; descriptive bootstrap 95% interval [−0.014090, 0.004032]; 8 trials). [Read exact CI results and limitations](docs/RESULTS-20261118.md). This is a valid negative pilot, not evidence against grounded computational genomes in general.
+
 ## What is scientifically new in v0.2?
 
 "CVNSS4.0 as computational DNA" is a **testable architectural analogy**, not evidence that a symbolic code can spontaneously produce an LLM. The research separates:
@@ -73,6 +75,7 @@ npm test
 - `docs/RESEARCH.md` — architecture, five deep niches, hypotheses and falsification.
 - `docs/PREFEASIBILITY.md` — milestones, risks, costs, forecast interpretation and stage gates.
 - `docs/PREREGISTRATION.md` — H0/H1, outcomes, ablations, falsification rules and evidence ladder.
+- `docs/RESULTS-20261118.md` — CI-verified exploratory negative-pilot results and provenance.
 - `docs/PAGES.md` — GitHub Pages publishing/checks and settings limitations.
 
 ## Research standards
