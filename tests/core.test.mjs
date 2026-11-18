@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import {ALPHABET,indexToTrits,tritsToIndex,encodeGenome,decodeGenome,textToGenome,audioToGenome,scoreGenome,runExperiment,simulatedOutlook,MODES} from "../src/core.mjs";
-import {cvnssToGenome} from "../src/cvnss-adapter.mjs";
+import {cvnssToGenome} from "../src/cvnss-adapter.mjs";\nimport "../vendor/cvnss-converter.js";
 test("Base27 alphabet is 27 distinct symbols",()=>assert.equal(new Set(ALPHABET).size,27));
 test("balanced ternary bijection for all 27 values",()=>{
   for(let i=0;i<27;i++){const t=indexToTrits(i);assert.equal(t.length,3);assert.ok(t.every(x=>[-1,0,1].includes(x)));assert.equal(tritsToIndex(t),i);}
@@ -11,7 +11,7 @@ test("text-derived seed is deterministic and has provenance",()=>{
   assert.match(cvnssToGenome("Tiếng Việt").provenance,/NOT CVNSS4.0/);
   assert.match(cvnssToGenome("Tiếng Việt",()=> "EXAMPLE").provenance,/supplied/);
 });
-test("audio-derived seed produces valid 27-state fingerprint",()=>{
+test("vendored CVNSS4.0 encoder converts Vietnamese text and passes audit-safe self-test",()=>{\n  const cv=globalThis.CVNSSConverter;\n  assert.ok(cv);assert.match(cv.VERSION,/5\\.0\\.0/);\n  const out=cv.convert("Tiếng Việt", "cqn");\n  assert.equal(typeof out.cvss,"string");assert.ok(out.cvss.length>0);\n  assert.equal(cv.selfTest().ok,true);\n  const seeded=cvnssToGenome("Tiếng Việt",text=>cv.convert(text,"cqn").cvss);\n  assert.match(seeded.provenance,/converter supplied/);\n});\ntest("audio-derived seed produces valid 27-state fingerprint",()=>{
   const sr=16000;const f=new Float32Array(sr);for(let i=0;i<f.length;i++)f[i]=Math.sin(2*Math.PI*440*i/sr)*.4;
   const g=audioToGenome(f,sr);assert.equal(g.length,24);assert.equal(encodeGenome(g).length,24);
 });
