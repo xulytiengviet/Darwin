@@ -1,4 +1,6 @@
 import "../vendor/cvnss-converter.js";
+import {runSeedAblation} from "../src/ablation.mjs";
+import {developAgent,executeAgent} from "../src/development.mjs";
 import {indexToTrits,encodeGenome,audioToGenome,runExperiment,simulatedOutlook,MODE_NAMES} from "../src/core.mjs";
 import {cvnssToGenome} from "../src/cvnss-adapter.mjs";
 const el=id=>document.getElementById(id);
@@ -113,6 +115,51 @@ async function toggleMic(){
   el("seedStatus").textContent="Ghi âm trên trình duyệt; nhấn Dừng ghi để tạo acoustic seed. Không tải audio lên máy chủ.";
  }catch(e){stream?.getTracks().forEach(t=>t.stop());stream=null;el("seedStatus").textContent="Microphone: "+e.message;}
 }
+
+async function runAblationBrowser(){
+  const button=el("runAblationBtn");
+  button.disabled=true;el("ablationStatus").textContent="Đang chạy ghép cặp 5 nhóm với cùng ngân sách...";
+  await new Promise(resolve=>setTimeout(resolve,20));
+  try{
+    const exp=runSeedAblation({mode,trials:8,population:24,generations:20,mutation:0.13,seed:2026});
+    const names={"unseeded":"Không seed","random-seed":"Seed ngẫu nhiên","unicode-seed":"Unicode hash","cvnss-seed":"CVNSS4.0 hash","cvnss-shuffled-control":"CVNSS đảo từ"};
+    const tbody=el("ablationTableBody");tbody.replaceChildren();
+    for(const condition of exp.conditions){
+      const s=exp.summaries[condition],tr=document.createElement("tr");
+      for(const value of [names[condition],s.meanHeldout.toFixed(3),
+       (s.pairedDeltaVsUnseeded.estimate>=0?"+":"")+s.pairedDeltaVsUnseeded.estimate.toFixed(4),
+       "["+s.pairedDeltaVsUnseeded.ci95.map(v=>v.toFixed(4)).join("; ")+"]"]){
+         const td=document.createElement("td");td.textContent=value;tr.append(td);
+      }
+      tbody.append(tr);
+    }
+    el("ablationStatus").textContent="Xong: "+exp.configuration.trials+" trials × "+exp.conditions.length+
+       " nhóm × "+(exp.configuration.population*exp.configuration.generations)+
+       " lượt đánh giá/nhóm/trial. Các điểm số chỉ thuộc mô hình toy.";
+  }catch(e){el("ablationStatus").textContent="Lỗi kiểm nghiệm: "+e.message;}
+  finally{button.disabled=false;}
+}
+function developBrowserAgent(){
+  try{
+    if(!genome)makeTextSeed();if(!genome)return;
+    const phenotype=developAgent(genome);
+    const simulatedObservations=[0,1,2,1,0,2,2,1,0];
+    const outcome=executeAgent(phenotype,simulatedObservations);
+    const item=phenotype.transitionTable[phenotype.initialState][0];
+    const report={
+      genome:phenotype.genotype,interpreter:phenotype.interpreter,
+      states:3,observationsPerState:3,
+      exampleInstruction:item,syntheticObservations:simulatedObservations,
+      executedSteps:outcome.executed,finalPosition:outcome.position,
+      remainingEnergy:outcome.energy,finalState:outcome.state,
+      trace:outcome.trace
+    };
+    el("developmentOutput").textContent=JSON.stringify(report,null,2);
+  }catch(e){el("developmentOutput").textContent="Interpreter error: "+e.message;}
+}
+el("runAblationBtn").addEventListener("click",runAblationBrowser);
+el("developBtn").addEventListener("click",developBrowserAgent);
+
 document.querySelectorAll(".track").forEach(b=>b.addEventListener("click",()=>{mode=b.dataset.mode;renderMode();}));
 for(const [id,fmt] of [["population",x=>x],["generations",x=>x],["mutation",x=>x+"%"],["shift",x=>x]])el(id).addEventListener("input",e=>el(id+"Value").textContent=fmt(e.target.value));
 el("textSeedBtn").addEventListener("click",makeTextSeed);el("micBtn").addEventListener("click",toggleMic);
