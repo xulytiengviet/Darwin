@@ -138,6 +138,8 @@ export function runExperiment(options={}) {
   const shift=Math.floor(cap(Number(options.shift)||12,2,100));
   const seed=Number(options.seed)>>>0;
   const r=prng(hash32("evolution-v1/"+seed+"/"+mode));
+  // Keep diagnostic random sampling separate so plots do not perturb evolution RNG.
+  const diagnosticRng=prng(hash32("random-diagnostic-v1/"+seed+"/"+mode));
   let pop=Array.from({length:popN},()=>randomGenome(r));
   // A supplied seed is heritable: initialize most individuals near the seed, and
   // retain a random subpopulation so that diversity is not artificially suppressed.
@@ -156,7 +158,7 @@ export function runExperiment(options={}) {
     totalEvals+=pop.length;
     // Equal-budget, per-generation naive random sampling baseline (not training).
     let randomBest=0;
-    for(let i=0;i<popN;i++)randomBest=Math.max(randomBest,scoreGenome(randomGenome(r),mode,epoch));
+    for(let i=0;i<popN;i++)randomBest=Math.max(randomBest,scoreGenome(randomGenome(diagnosticRng),mode,epoch));
     bestRandom=Math.max(bestRandom,randomBest);
     const champ=ranked[0];
     const mean=ranked.reduce((a,b)=>a+b.f,0)/ranked.length;
@@ -172,7 +174,7 @@ export function runExperiment(options={}) {
     pop=next;
   }
   const last=history.at(-1);
-  return {mode,seed,population:popN,generations,mutation,shift,history,champion:champions.at(-1),evaluations:totalEvals,final:{best:last.best,holdout:last.holdout,diversity:last.diversity,random:last.random},note:"Synthetic toy benchmark; holdout changes parts of a fixed target; no LLM, biological or physical validation."};
+  return {mode,seed,population:popN,generations,mutation,shift,history,champion:champions.at(-1),evaluations:totalEvals,diagnosticEvaluations:popN*generations,final:{best:last.best,holdout:last.holdout,diversity:last.diversity,random:last.random},note:"Synthetic toy benchmark; holdout changes parts of a fixed target; no LLM, biological or physical validation."};
 }
 function quantile(sorted,q) {
   const x=q*(sorted.length-1),i=Math.floor(x),w=x-i;
