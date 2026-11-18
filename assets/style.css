@@ -23,3 +23,11 @@
 .hypothesis-section .method-note a{color:#0d7b69;text-decoration:underline}
 @media(max-width:980px){.hypothesis-lab{grid-template-columns:1fr}.evidence-ladder{grid-template-columns:repeat(3,1fr)}}
 @media(max-width:580px){.hypothesis-grid{grid-template-columns:1fr}.evidence-ladder{grid-template-columns:repeat(2,1fr)}}
+
+
+.pilot-result{display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px solid #d7e3eb;background:#eef5f8;border-radius:12px;padding:20px 24px;margin:19px 0}
+.pilot-label{font-size:10px;font-weight:790;letter-spacing:.1em;color:#55768a}
+.pilot-result h3{font-size:18px;margin:7px 0}
+.pilot-result p{color:#657a8a;font-size:12px;line-height:1.7;margin:0;max-width:870px}
+.pilot-result .button{flex-shrink:0}
+@media(max-width:760px){.pilot-result{flex-direction:column;align-items:start}}
