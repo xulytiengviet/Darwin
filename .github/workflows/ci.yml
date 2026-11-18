@@ -13,3 +13,11 @@ jobs:
         with:
           node-version: "22"
       - run: npm test
+      - name: Run reproducible matched-budget CVNSS seed ablation
+        run: node scripts/run-ablation.mjs --mode alife --trials 8 --population 24 --generations 20 --mutation 0.13 --seed 2026 --out results/seed-ablation-ci.json
+      - name: Upload benchmark JSON evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: darwin-seed-ablation-${{ github.sha }}
+          path: results/seed-ablation-ci.json
+          retention-days: 30
