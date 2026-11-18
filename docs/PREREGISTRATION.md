@@ -15,13 +15,13 @@ The phrase **"CVNSS4.0 as computational DNA"** is an architectural analogy. It i
 5. environment and fitness (evaluation independent of the genotype author);
 6. selection, adaptation, lineage, and held-out validation.
 
-The current Darwin implementation has (1), (2) through the minimal 3-state automaton in \`src/development.mjs\`, (3) a tiny executable deterministic policy, (4), and (5–6) toy objectives in \`src/core.mjs\`. **Crucial limitation:** the current evolution fitness evaluates the 24-symbol genome *directly*, and **does not evaluate the automaton phenotype**. The two modules are separately testable, but **the full genotype → phenotype → environment → reproductive selection feedback loop has not yet been integrated**. That is an explicit milestone, not an achieved result.
+The current Darwin implementation has (1), (2) through the minimal 3-state automaton in `src/development.mjs`, (3) a tiny executable deterministic policy, (4), and (5–6) toy objectives in `src/core.mjs`. **Crucial limitation:** the current evolution fitness evaluates the 24-symbol genome *directly*, and **does not evaluate the automaton phenotype**. The two modules are separately testable, but **the full genotype → phenotype → environment → reproductive selection feedback loop has not yet been integrated**. That is an explicit milestone, not an achieved result.
 
 ### Mathematical encoding
 
-The symbol set has 27 members; \`i∈{0,...,26}\` maps uniquely to
-\`i−13 = 9*t2 + 3*t1 + t0\`, with each balanced trit \`t∈{−1,0,+1}\`.
-This is a simple bijection \`27=3^3\`; it **does not** establish greater intelligence, power efficiency, information density per physical bit, or compression compared with binary systems. Semantic information is not inherent in an integer label.
+The symbol set has 27 members; `i∈{0,...,26}` maps uniquely to
+`i−13 = 9*t2 + 3*t1 + t0`, with each balanced trit `t∈{−1,0,+1}`.
+This is a simple bijection `27=3^3`; it **does not** establish greater intelligence, power efficiency, information density per physical bit, or compression compared with binary systems. Semantic information is not inherent in an integer label.
 
 ### Natural speech, text seed, and genuine genomic semantics
 
@@ -45,7 +45,7 @@ Claims concerning *xenobots* are **out of scope for current browser verification
 
 ## 3. Primary computational experiment: fixed-budget seed ablation
 
-**Implementation:** \`src/ablation.mjs\`, \`scripts/run-ablation.mjs\`, \`tests/ablation.test.mjs\`.
+**Implementation:** `src/ablation.mjs`, `scripts/run-ablation.mjs`, `tests/ablation.test.mjs`.
 
 Conditions, *identical evolutionary algorithm and evaluation budget*:
 - **C0 unseeded:** ordinary random population.
@@ -64,17 +64,17 @@ Default preregistration-draft benchmark: 20 paired trials, population=28, genera
 
 ### Exact CLI commands
 
-\`\`\`bash
+```bash
 npm test
 node scripts/run-ablation.mjs --mode alife --trials 20 --population 28 --generations 35 --mutation 0.13 --seed 2026 --out results/alife-ablation.json
 node scripts/run-ablation.mjs --mode culture --trials 20 --out results/culture-ablation.json
-\`\`\`
+```
 
 The JSON contains complete rows, per-condition summaries, paired-bootstrap intervals, configuration and limitations. Record git commit SHA, Node.js version, converter version, trial seeds, evaluation budget and artifact checksum. Do not interpret a seed hash as carrying Vietnamese meaning.
 
 ## 4. Developmental genotype to phenotype
 
-The 24 Base27 tokens contain 72 balanced trits. \`developAgent()\` decodes part of these into a 3-state × 3-observation instruction table; \`executeAgent()\` applies the table to a sequence of discrete observations. The output includes deterministic state transitions, actions, messages and synthetic energy.
+The 24 Base27 tokens contain 72 balanced trits. `developAgent()` decodes part of these into a 3-state × 3-observation instruction table; `executeAgent()` applies the table to a sequence of discrete observations. The output includes deterministic state transitions, actions, messages and synthetic energy.
 
 This minimal interpreter establishes **functional interpretation** and **computational heredity as a representation**, but it is not learning or autonomously generating an LLM. The remaining step is to replace the direct genome target-matching fitness with an evaluator that **runs the phenotype** in unseen tasks; then selection changes meaningful behavior instead of arbitrary symbol targets.
 
@@ -115,7 +115,7 @@ Q1/Scopus status is **not** determined by a repository, manuscript title or simu
 
 ## 7. Provenance, audit and research governance
 
-- External CVNSS4.0 converter version 5.0.0-audit-safe is tracked in \`vendor/\`. Cite the original writing-system contributors (Kiều Trường Lâm and Trần Tư Bình) distinctly from the Darwin implementation.
+- External CVNSS4.0 converter version 5.0.0-audit-safe is tracked in `vendor/`. Cite the original writing-system contributors (Kiều Trường Lâm and Trần Tư Bình) distinctly from the Darwin implementation.
 - Every report must include output type: **mathematical / executable simulation / measured experimental result / scientific hypothesis**.
 - Keep held-out sets sealed. Do not modify claimed confirmatory hypotheses after viewing outcomes. Version alterations as new exploratory studies.
 - Publish synthetic data generators and full seed lists; never delete negative examples.
