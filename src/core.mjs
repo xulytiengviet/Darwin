@@ -134,11 +134,19 @@ export function runExperiment(options={}) {
   if(!MODES.includes(mode))throw new RangeError("Unknown mode");
   const popN=Math.floor(cap(Number(options.population)||36,8,100));
   const generations=Math.floor(cap(Number(options.generations)||45,2,120));
-  const mutation=cap(Number(options.mutation)??.13,.001,.75);
+  const mutation=cap(options.mutation===undefined?.13:Number(options.mutation),.001,.75);
   const shift=Math.floor(cap(Number(options.shift)||12,2,100));
   const seed=Number(options.seed)>>>0;
   const r=prng(hash32("evolution-v1/"+seed+"/"+mode));
   let pop=Array.from({length:popN},()=>randomGenome(r));
+  // A supplied seed is heritable: initialize most individuals near the seed, and
+  // retain a random subpopulation so that diversity is not artificially suppressed.
+  const initial=typeof options.initialGenome==="string"?decodeGenome(options.initialGenome):options.initialGenome;
+  if(initial!==undefined){
+    if(!validateGenome(initial))throw new TypeError("initialGenome must be 24 Base27 indices");
+    for(let i=0;i<Math.floor(popN*.7);i++)
+      pop[i]=i===0?initial.slice():evolveChild(initial,initial,r,Math.max(.12,mutation*1.8));
+  }
   const history=[],baseline=[],champions=[];
   let totalEvals=0, bestRandom=0;
   const generationEpoch=g=> (mode==="universal"||mode==="open")?Math.floor(g/shift):0;
