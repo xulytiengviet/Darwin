@@ -4,7 +4,7 @@ Repository settings: https://github.com/xulytiengviet/Darwin/settings/pages
 
 ## Intended URL
 
-For the public repository \`xulytiengviet/Darwin\`, the conventional GitHub Pages project URL is:
+For the public repository `xulytiengviet/Darwin`, the conventional GitHub Pages project URL is:
 
 https://xulytiengviet.github.io/Darwin/
 
@@ -15,12 +15,12 @@ https://xulytiengviet.github.io/Darwin/
 1. Open the Settings → Pages link above while signed in as repository owner.
 2. In "Build and deployment", choose **Deploy from a branch**.
 3. Choose branch **main** and folder **/ (root)**; Save.
-4. Keep \`index.html\` at the root, alongside \`assets/\`, \`src/\` and \`vendor/\`.
-5. Push a change to \`main\`, check Actions → **pages build and deployment** for success.
+4. Keep `index.html` at the root, alongside `assets/`, `src/` and `vendor/`.
+5. Push a change to `main`, check Actions → **pages build and deployment** for success.
 6. Open the project URL and verify that the new heading "CVNSS4.0 như DNA tính toán: giả thuyết có thể bác bỏ" appears, then exercise **Chạy kiểm nghiệm 5 nhóm** and **Biên dịch DNA số thành tác tử**.
 7. In browser Developer Tools, ensure no missing ES module fetches or CSP failures.
 
-**Do not set Pages source to /docs for this version:** the entrypoint is \`/index.html\` and docs contains Markdown research protocols. The \`.nojekyll\` root marker instructs Pages to serve the static module tree directly.
+**Do not set Pages source to /docs for this version:** the entrypoint is `/index.html` and docs contains Markdown research protocols. The `.nojekyll` root marker instructs Pages to serve the static module tree directly.
 
 ## Connector scope
 
