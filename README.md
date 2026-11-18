@@ -40,7 +40,8 @@ npm test
 - `assets/style.css` — responsive UI.
 - `assets/app.js` — UI logic, browser microphone capture and SVG chart.
 - `src/core.mjs` — no-dependency seeded evolution, Base27/trits, waveform feature tokenizer and Monte Carlo simulator.
-- `src/cvnss-adapter.mjs` — provenance-preserving adapter and optional fallback.\n- `vendor/cvnss-converter.js` — upstream v5.0.0-audit-safe CVNSS4.0 implementation; original code [source](https://github.com/xulytiengviet/CVNSS4.0/blob/main/assets/cvnss-converter.js).
+- `src/cvnss-adapter.mjs` — provenance-preserving adapter and optional fallback.
+- `vendor/cvnss-converter.js` — upstream v5.0.0-audit-safe CVNSS4.0 implementation; original code [source](https://github.com/xulytiengviet/CVNSS4.0/blob/main/assets/cvnss-converter.js).
 - `tests/core.test.mjs` — test round-trips, determinism and signal conversion.
 - `docs/RESEARCH.md` — architecture, five deep niches, hypotheses and falsification.
 - `docs/PREFEASIBILITY.md` — milestones, risks, costs, forecast interpretation and stage gates.
@@ -48,5 +49,9 @@ npm test
 ## Research standards
 Run independent held-out tests, repeated random seeds, matched compute budgets and ablations: random 27-symbol seed vs Unicode hash seed vs genuine CVNSS4.0 seed when adapter exists; binary vs ternary genotype; with and without learning / evolution. Report all negative outcomes. For high-impact tasks, use sandboxed deterministic evaluation and independent safety gates.
 
-## Credits\n\nThe original CVNSS4.0 writing system is attributed to Kiều Trường Lâm and Trần Tư Bình; the public audit-safe converter and website are maintained at xulytiengviet/CVNSS4.0. The evolutionary interpretation here is a separate computational research hypothesis.\n\n## License
+## Credits
+
+The original CVNSS4.0 writing system is attributed to Kiều Trường Lâm and Trần Tư Bình; the public audit-safe converter and website are maintained at xulytiengviet/CVNSS4.0. The evolutionary interpretation here is a separate computational research hypothesis.
+
+## License
 MIT (see `LICENSE`). This research software does not claim endorsement by cited authors or institutions.
