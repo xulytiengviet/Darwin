@@ -1,3 +1,4 @@
+import "../vendor/cvnss-converter.js";
 import {indexToTrits,encodeGenome,audioToGenome,runExperiment,simulatedOutlook,MODE_NAMES} from "../src/core.mjs";
 import {cvnssToGenome} from "../src/cvnss-adapter.mjs";
 const el=id=>document.getElementById(id);
@@ -24,7 +25,8 @@ function setGenome(g,p){
  el("seedStatus").textContent=p+" · 24 symbols, 72 trits. Không mặc nhiên có ngữ nghĩa.";
 }
 function makeTextSeed(){
- try{const fn=typeof window.CVNSS40Converter==="function"?window.CVNSS40Converter:null;
+ try{const cv=window.CVNSSConverter;
+ const fn=cv&&typeof cv.convert==="function"?(text)=>cv.convert(text,"cqn").cvss:null;
  const r=cvnssToGenome(el("seedText").value,fn);setGenome(r.genome,r.provenance);}
  catch(e){el("seedStatus").textContent="Lỗi seed: "+e.message;}
 }
