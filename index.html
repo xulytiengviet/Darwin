@@ -28,7 +28,7 @@
           <div class="arch-heading">GENESIS PIPELINE <span>v0.1</span></div>
           <div class="arch-node">VOICE / TEXT <small>Natural input, acoustic samples</small></div>
           <div class="arch-line">↓</div>
-          <div class="arch-row"><div class="arch-node half">ACOUSTIC UNITS<small>Signal-derived tokens</small></div><div class="arch-node half">CVNSS ADAPTER<small>Audited codec required</small></div></div>
+          <div class="arch-row"><div class="arch-node half">ACOUSTIC UNITS<small>Signal-derived tokens</small></div><div class="arch-node half">CVNSS ADAPTER<small>Local v5.0.0 audit-safe</small></div></div>
           <div class="arch-line">↓</div>
           <div class="arch-node active">BASE27 → 3 BALANCED TRITS <small>Genome / genotype / seed fingerprint</small></div>
           <div class="arch-line">↓</div>
@@ -58,7 +58,7 @@
           <label for="seedText">Text seed / câu lệnh tự nhiên</label>
           <textarea id="seedText" rows="3" spellcheck="false">Tiến hóa một hệ thống biết thích nghi với môi trường thay đổi</textarea>
           <div class="input-actions"><button id="textSeedBtn" class="button primary">Tạo seed từ văn bản</button><button id="micBtn" class="button secondary">🎙 Ghi tiếng nói</button></div>
-          <p class="micro-note" id="seedStatus" role="status">Chưa tạo seed. Văn bản hiện dùng Unicode hash fallback, không phải converter CVNSS4.0.</p>
+          <p class="micro-note" id="seedStatus" role="status">Chưa tạo seed. Text path dùng CVNSS4.0 audit-safe v5.0.0; sau đó băm tạo genome.</p>
           <div class="genome-box">
             <div class="genome-header"><span>DIGITAL GENOME <small>24 symbols / 72 trits</small></span><button id="copyGenome" class="icon-btn" title="Sao chép bộ gen">Sao chép</button></div>
             <div class="genome-seq" id="genomeDisplay">—</div>
