@@ -12,7 +12,7 @@ Darwin EvoDNA studies how a symbolic seed derived from text or digital speech fe
 5. Population-based reasoning under non-stationarity, evaluation cost and Goodhart-like reward hacking.
 
 ## Critical distinctions
-- Actual CVNSS4.0 conversion needs an audited converter. The built-in text path is a Unicode-derived **seed hash fallback**, not a CVNSS4.0 codec.
+- Actual CVNSS4.0 conversion uses the included audited converter in the browser. The browser text path uses the vendored **CVNSS4.0 v5.0.0-audit-safe converter** from [xulytiengviet/CVNSS4.0](https://github.com/xulytiengviet/CVNSS4.0), then hashes the CVNSS4.0 output into a 24-symbol genome. The pure adapter retains a clearly marked Unicode fallback if the converter is unavailable. This hashing stage is not a reversible codec.
 - The audio path quantizes **digital acoustic features** into 27 symbolic states. It is **not ASR, semantic understanding, or reversible waveform coding**.
 - The 27 symbols are mapped bijectively to balanced triples of trits; this identity alone provides no proof of better ML performance or compression.
 - A seed key is **not a cryptographic secret or a biological genome**. A developmental interpreter, environment, fitness and learning processes are essential.
@@ -40,7 +40,7 @@ npm test
 - `assets/style.css` — responsive UI.
 - `assets/app.js` — UI logic, browser microphone capture and SVG chart.
 - `src/core.mjs` — no-dependency seeded evolution, Base27/trits, waveform feature tokenizer and Monte Carlo simulator.
-- `src/cvnss-adapter.mjs` — explicit extension point for audited CVNSS4.0 conversion.
+- `src/cvnss-adapter.mjs` — provenance-preserving adapter and optional fallback.\n- `vendor/cvnss-converter.js` — upstream v5.0.0-audit-safe CVNSS4.0 implementation; original code [source](https://github.com/xulytiengviet/CVNSS4.0/blob/main/assets/cvnss-converter.js).
 - `tests/core.test.mjs` — test round-trips, determinism and signal conversion.
 - `docs/RESEARCH.md` — architecture, five deep niches, hypotheses and falsification.
 - `docs/PREFEASIBILITY.md` — milestones, risks, costs, forecast interpretation and stage gates.
@@ -48,5 +48,5 @@ npm test
 ## Research standards
 Run independent held-out tests, repeated random seeds, matched compute budgets and ablations: random 27-symbol seed vs Unicode hash seed vs genuine CVNSS4.0 seed when adapter exists; binary vs ternary genotype; with and without learning / evolution. Report all negative outcomes. For high-impact tasks, use sandboxed deterministic evaluation and independent safety gates.
 
-## License
+## Credits\n\nThe original CVNSS4.0 writing system is attributed to Kiều Trường Lâm and Trần Tư Bình; the public audit-safe converter and website are maintained at xulytiengviet/CVNSS4.0. The evolutionary interpretation here is a separate computational research hypothesis.\n\n## License
 MIT (see `LICENSE`). This research software does not claim endorsement by cited authors or institutions.
