@@ -11,12 +11,12 @@
 <body>
   <header class="topbar">
     <div class="brand"><span class="brand-mark">D<span class="brand-dot">·</span></span><span>Darwin <b>EvoDNA</b><small>SYMBOLIC EVOLUTION RESEARCH</small></span></div>
-    <nav aria-label="Điều hướng chính"><a href="#architecture">Kiến trúc</a><a href="#tracks">5 hướng nghiên cứu</a><a href="#laboratory">Phòng thí nghiệm</a><a href="#feasibility">Tiền khả thi</a></nav>
+    <nav aria-label="Điều hướng chính"><a href="#architecture">Kiến trúc</a><a href="#tracks">5 hướng nghiên cứu</a><a href="#laboratory">Phòng thí nghiệm</a><a href="#hypothesis">Giả thuyết DNA</a><a href="#feasibility">Tiền khả thi</a></nav>
     <a class="github-link" href="https://github.com/xulytiengviet/Darwin" rel="noopener" target="_blank">GitHub <span aria-hidden="true">↗</span></a>
   </header>
   <main>
     <section class="hero" id="architecture">
-      <div class="eyebrow"><span class="pulse"></span> OPEN RESEARCH PROTOTYPE · V0.1 · NOV 2026</div>
+      <div class="eyebrow"><span class="pulse"></span> FALSIFIABLE COMPUTATIONAL GENOME · V0.2 · NOV 2026</div>
       <div class="hero-grid">
         <div>
           <h1>From <em>Voice</em> to<br/><span>Evolutionary Intelligence.</span></h1>
@@ -84,6 +84,50 @@
         </div>
       </div>
       <div class="method-note"><b>Kiểm chứng khoa học:</b> Điểm fitness được định nghĩa trên năm bài toán tổng hợp, không đo trí tuệ, ASR, sinh học tế bào hoặc tính ưu việt của CVNSS4.0. Để kiểm tra giả thuyết thực phải sử dụng đối chứng tương đương, tập kiểm tra độc lập, nhiều random seed và ngân sách tính toán bằng nhau.</div>
+    </section>
+    <section class="section hypothesis-section" id="hypothesis">
+      <div class="section-heading"><div class="eyebrow">FALSIFIABLE RESEARCH · V0.2</div>
+        <h2>CVNSS4.0 như DNA tính toán: giả thuyết có thể bác bỏ</h2>
+        <p>Chúng tôi không mặc định bộ mã sinh ra trí tuệ. Mỗi tuyên bố phải đi kèm đối chứng, phép đo, chi phí và điều kiện thất bại. Mọi phép tính dưới đây chỉ kiểm tra mô hình tổng hợp.</p>
+      </div>
+      <div class="hypothesis-grid">
+        <article class="hypothesis-card">
+          <div class="detail-kicker">H0 · NULL HYPOTHESIS</div>
+          <h3>Seed CVNSS4.0 không tạo lợi ích đo được</h3>
+          <p>Trên cùng thuật toán, cùng số lần đánh giá và cùng nhiệm vụ tổng hợp, seed CVNSS4.0 không cải thiện hiệu năng kiểm tra so với seed ngẫu nhiên hoặc không seed.</p>
+        </article>
+        <article class="hypothesis-card alternative">
+          <div class="detail-kicker">H1 · ALTERNATIVE</div>
+          <h3>Seed CVNSS4.0 cải thiện khả năng tìm kiếm</h3>
+          <p>Chỉ giữ giả thuyết nếu kết quả cải thiện nhất quán qua nhiều lượt, có khoảng bất định được báo cáo và duy trì trên các tác vụ kiểm tra độc lập. Hiện chưa chứng minh.</p>
+        </article>
+      </div>
+      <div class="evidence-ladder">
+        <div><span>E0</span><b>Toán học</b><small>27 = 3³; song ánh 3 trit</small></div>
+        <div><span>E1</span><b>Phần mềm</b><small>Genome → phenotype thực thi</small></div>
+        <div><span>E2</span><b>Thực nghiệm toy</b><small>Ablation với đối chứng</small></div>
+        <div class="future"><span>E3</span><b>Grounding</b><small>Chưa kiểm chứng ngoài mô phỏng</small></div>
+        <div class="future"><span>E4</span><b>Trí tuệ tự tiến hóa</b><small>Giả thuyết dài hạn</small></div>
+      </div>
+      <div class="hypothesis-lab">
+        <article class="panel">
+          <div class="panel-title"><span class="dot-label">A</span><h3>Đối chứng nguồn seed</h3></div>
+          <p class="study-desc">Chạy 8 thử nghiệm ghép cặp, 24 cá thể × 20 thế hệ × 5 nhóm. Nguồn văn bản là bộ câu cố định trong giao thức, không sử dụng ô nhập tùy ý phía trên.</p>
+          <button class="button primary" id="runAblationBtn">Chạy kiểm nghiệm 5 nhóm</button>
+          <p class="micro-note" id="ablationStatus" role="status">Chưa có kết quả. So sánh được tính bằng phần mềm thực trong trình duyệt.</p>
+          <div class="risk-table"><table><thead><tr><th>Nhóm</th><th>Held-out</th><th>Δ với không seed</th><th>95% bootstrap</th></tr></thead>
+            <tbody id="ablationTableBody"><tr><td colspan="4">Nhấn chạy để tính toán kết quả.</td></tr></tbody></table></div>
+          <p class="micro-note">Phân vị bootstrap mô tả độ biến thiên trong bài toán toy; chưa phải chứng cứ thống kê xác nhận ngữ nghĩa tiếng Việt.</p>
+        </article>
+        <article class="panel">
+          <div class="panel-title"><span class="dot-label">B</span><h3>Genome → Phenotype</h3></div>
+          <p class="study-desc">Giải mã 24 ký hiệu Base27 thành bảng lệnh 3 trạng thái × 3 quan sát. Cho chạy thử một chuỗi quan sát giả lập để thấy bộ gen sinh ra hành vi có thể tái lập.</p>
+          <button class="button secondary" id="developBtn">Biên dịch DNA số thành tác tử</button>
+          <pre id="developmentOutput" class="development-output">Chưa biên dịch. Bắt đầu từ một text seed hoặc acoustic seed ở phía trên.</pre>
+          <p class="micro-note">Tác tử trạng thái hữu hạn không phải LLM. Benchmark tiến hóa hiện vẫn đánh giá genome trực tiếp, chưa nối vòng phản hồi phenotype → môi trường → chọn lọc.</p>
+        </article>
+      </div>
+      <div class="method-note"><b>Tiêu chuẩn nghiên cứu:</b> Một lợi thế nhỏ trong các hàm fitness tổng hợp không chứng minh năng lực tự học hay tạo sinh LLM. Phải đo trên dữ liệu độc lập, ngân sách tương đương, ghi nhận kết quả âm tính và cho phép bác bỏ giả thuyết. <a href="https://github.com/xulytiengviet/Darwin/blob/main/docs/PREREGISTRATION.md" rel="noopener" target="_blank">Đọc giao thức H0/H1 và phép thử bác bỏ ↗</a></div>
     </section>
     <section class="section" id="feasibility">
       <div class="section-heading"><div class="eyebrow">RESEARCH FEASIBILITY</div><h2>Tiền khả thi và giai đoạn xác nhận</h2><p>Các mốc nghiên cứu có điều kiện, không phải cam kết kỹ thuật hay dự báo thị trường.</p></div>
