@@ -19,14 +19,14 @@ Darwin EvoDNA studies how a symbolic seed derived from text or digital speech fe
 
 Run the reproducible ablation in Node.js:
 
-\`\`\`bash
+```bash
 npm test
 npm run ablation
 # or generate full machine-readable data:
 node scripts/run-ablation.mjs --mode alife --trials 20 --out results/seed-ablation.json
-\`\`\`
+```
 
-The benchmark runs five arms: unseeded, random-seed, Unicode-hash seed, audited CVNSS4.0-hash seed, and CVNSS shuffled-word control. Results are artificial and **are not confirmation of a publishable scientific claim**. The \`src/development.mjs\` automaton is executable but the current fitness evaluator operates on the raw genome, not on automaton behavior: completing this feedback loop is the next important research milestone.
+The benchmark runs five arms: unseeded, random-seed, Unicode-hash seed, audited CVNSS4.0-hash seed, and CVNSS shuffled-word control. Results are artificial and **are not confirmation of a publishable scientific claim**. The `src/development.mjs` automaton is executable but the current fitness evaluator operates on the raw genome, not on automaton behavior: completing this feedback loop is the next important research milestone.
 
 ## Five research tracks
 1. Evolutionary Computation and Artificial Life (EC / ALife).
